@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/avatarView"
+        android:layout_width="@dimen/dimen.40dp"
+        android:layout_height="@dimen/dimen.40dp"
+        android:layout_marginStart="?marginMedium"
+        android:layout_marginTop="?marginMedium"
+        android:layout_marginBottom="?marginMedium"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/gistNameView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?marginMedium"
+        android:layout_marginTop="?marginMedium"
+        android:layout_marginEnd="?marginMedium"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="UserName/Wow.java"/>
+
+    <TextView
+        android:id="@+id/gistDescriptionView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?marginMedium"
+        android:layout_marginEnd="?marginMedium"
+        android:layout_marginBottom="?marginMedium"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/avatarView"
+        app:layout_constraintTop_toBottomOf="@id/gistNameView"
+        tools:text="Some description"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

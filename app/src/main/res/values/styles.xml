@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Theme.GitGist" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Margin -->
+        <item name="marginXSmall">@dimen/dimen.8dp</item>
+        <item name="marginSmall">@dimen/dimen.12dp</item>
+        <item name="marginMedium">@dimen/dimen.16dp</item>
+        <item name="marginLarge">@dimen/dimen.24dp</item>
+    </style>
+
+</resources>
