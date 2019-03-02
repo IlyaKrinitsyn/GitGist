@@ -7,6 +7,8 @@ import com.krinitsyn.utils.RxThrowable
 import com.krinitsyn.utils.logger.Logger
 import com.krinitsyn.utils.resource.mapResource
 import com.krinitsyn.utils.schedulers.Schedulers
+import io.reactivex.BackpressureStrategy
+import io.reactivex.subjects.BehaviorSubject
 
 @InjectViewState
 internal class GistsPresenter(
@@ -15,10 +17,13 @@ internal class GistsPresenter(
     private val logger: Logger
 ) : AbstractPresenter<GistsView>() {
 
+    private val gistsRefreshSubject = BehaviorSubject.createDefault(Unit)
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        repository.githubGistDataService.getPublicGists()
+        gistsRefreshSubject.toFlowable(BackpressureStrategy.DROP)
+            .switchMap { repository.githubGistDataService.getPublicGists() }
             .observeOn(schedulers.computation)
             .mapResource(GistsFunctions::createGists)
             .map(::GistsViewState)
@@ -26,5 +31,7 @@ internal class GistsPresenter(
             .asAutoDispose()
             .subscribe(viewState::onViewStateChanged, RxThrowable.printStackTrace(logger, propagate = true))
     }
+
+    fun refreshGists() = gistsRefreshSubject.onNext(Unit)
 
 }

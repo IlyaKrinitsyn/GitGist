@@ -6,6 +6,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="listDividerHeight">@dimen/dimen.1dp</item>
+
         <!-- Margin -->
         <item name="marginXSmall">@dimen/dimen.8dp</item>
         <item name="marginSmall">@dimen/dimen.12dp</item>

@@ -11,7 +11,7 @@ data class GistsViewState(
             val userId: Long,
             val avatarUrl: String,
             val gistName: String,
-            val gistDescription: String,
+            val gistDescription: String?,
             val gistId: String
     )
 

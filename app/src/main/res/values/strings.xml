@@ -1,3 +1,11 @@
 <resources>
+
     <string name="app_name">GitGist</string>
+
+    <!-- Common -->
+    <string name="error.message">Wow, something went wrong</string>
+
+    <!-- Gists fragment -->
+    <string name="fragment.gists.gist.name.format" formatted="true">%1$s/%2$s</string>
+
 </resources>

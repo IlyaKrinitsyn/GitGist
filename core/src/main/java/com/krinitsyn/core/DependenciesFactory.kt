@@ -1,6 +1,6 @@
 package com.krinitsyn.core
 
-import com.krinitsyn.git_gist.GithubGistDataServiceProvider
+import com.krinitsyn.git_gist.GithubGistProvider
 import com.krinitsyn.utils.logger.EmptyLogger
 import com.krinitsyn.utils.logger.LogcatLogger
 import com.krinitsyn.utils.schedulers.ApplicationSchedulers
@@ -11,7 +11,7 @@ object DependenciesFactory {
         val schedulers = ApplicationSchedulers()
         val logger = if (BuildConfig.DEBUG) LogcatLogger() else EmptyLogger()
 
-        val githubGistDataService = GithubGistDataServiceProvider.provide(schedulers, logger)
+        val githubGistDataService = GithubGistProvider.provide(schedulers, logger)
 
         val repository = Repository(githubGistDataService)
 

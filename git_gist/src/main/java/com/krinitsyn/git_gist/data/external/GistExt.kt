@@ -9,7 +9,7 @@ internal data class GistExt(
     @field:JsonProperty("commits_url") val commitsUrl: String = "",
     @field:JsonProperty("id") val id: String = "",
     @field:JsonProperty("files") val files: Map<String, FileExt> = emptyMap(),
-    @field:JsonProperty("description") val description: String = "",
+    @field:JsonProperty("description") val description: String? = null,
     @field:JsonProperty("comments") val comments: Int = 0,
     @field:JsonProperty("comments_url") val commentsUrl: String = "",
     @field:JsonProperty("owner") val owner: UserExt = UserExt(),
@@ -19,7 +19,7 @@ internal data class GistExt(
     internal data class FileExt(
         @field:JsonProperty("file_name") val fileName: String = "",
         @field:JsonProperty("type") val type: String = "",
-        @field:JsonProperty("language") val language: String = "",
+        @field:JsonProperty("language") val language: String? = null,
         @field:JsonProperty("raw_url") val rawUrl: String = "",
         @field:JsonProperty("size") val size: Long = 1L
     )

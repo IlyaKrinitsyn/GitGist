@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Common -->
+    <attr name="listDividerHeight" format="dimension|reference"/>
+
     <!-- Margin -->
     <attr name="marginXSmall" format="dimension|reference"/>
     <attr name="marginSmall" format="dimension|reference"/>

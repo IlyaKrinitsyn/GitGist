@@ -6,7 +6,7 @@ data class Gist(
     val commitsUrl: String,
     val id: String,
     val files: Map<String, File>,
-    val description: String,
+    val description: String?,
     val comments: Int,
     val commentsUrl: String,
     val owner: User,
@@ -16,7 +16,7 @@ data class Gist(
     data class File(
         val fileName: String,
         val type: String,
-        val language: String,
+        val language: String?,
         val rawUrl: String,
         val size: Long
     )
