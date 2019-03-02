@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="colorPrimary">#2C497A</color>
     <color name="colorPrimaryDark">#1D345E</color>
     <color name="colorAccent">#FAF64E</color>
+
+    <color name="listItemGistFileNameBackground">#AEB0B2</color>
+    <color name="listItemGistFileCommitsHeaderBackground">#DBDEE2</color>
+
 </resources>

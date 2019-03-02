@@ -11,14 +11,4 @@ data class Gist(
     val commentsUrl: String,
     val owner: User,
     val truncated: Boolean
-) {
-
-    data class File(
-        val fileName: String,
-        val type: String,
-        val language: String?,
-        val rawUrl: String,
-        val size: Long
-    )
-
-}
+)

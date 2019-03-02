@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="?paddingXSmall"
+    android:paddingBottom="?paddingXSmall">
+
+    <TextView
+        android:id="@+id/listItemGistCommitIdView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingStart="?paddingSmall"
+        android:paddingEnd="?paddingSmall"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="e463b00765e508966149bd03811641180714255c"/>
+
+    <TextView
+        android:id="@+id/listItemGistCommitUserView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingStart="?paddingSmall"
+        android:paddingEnd="?paddingSmall"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listItemGistCommitIdView"
+        tools:text="by https://reddit.com/r/mAndroidDev/"/>
+
+    <TextView
+        android:id="@+id/listItemGistCommitAdditionsView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?marginXSmall"
+        android:ellipsize="end"
+        android:textColor="@android:color/holo_green_light"
+        android:gravity="center"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingStart="?paddingSmall"
+        android:paddingEnd="?paddingSmall"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        app:layout_constraintEnd_toStartOf="@id/listItemGistCommitDeletionsView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listItemGistCommitUserView"
+        tools:text="+155515"/>
+
+    <TextView
+        android:id="@+id/listItemGistCommitDeletionsView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginTop="?marginXSmall"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingStart="?paddingSmall"
+        android:paddingEnd="?paddingSmall"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/listItemGistCommitAdditionsView"
+        app:layout_constraintTop_toBottomOf="@id/listItemGistCommitUserView"
+        tools:text="-94949"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

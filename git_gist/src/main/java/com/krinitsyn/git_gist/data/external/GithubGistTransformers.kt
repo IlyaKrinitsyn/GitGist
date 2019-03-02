@@ -1,13 +1,12 @@
 package com.krinitsyn.git_gist.data.external
 
-import com.krinitsyn.git_gist.data.Gist
-import com.krinitsyn.git_gist.data.User
+import com.krinitsyn.git_gist.data.*
 
 internal object GithubGistTransformers {
 
     fun gists(gistExtList: List<GistExt>): List<Gist> = gistExtList.map(::gist)
 
-    private fun gist(gistExt: GistExt): Gist = Gist(
+    fun gist(gistExt: GistExt): Gist = Gist(
         url = gistExt.url,
         forksUrl = gistExt.forksUrl,
         commitsUrl = gistExt.commitsUrl,
@@ -20,7 +19,7 @@ internal object GithubGistTransformers {
         truncated = gistExt.truncated
     )
 
-    private fun file(fileExt: GistExt.FileExt): Gist.File = Gist.File(
+    private fun file(fileExt: FileExt): File = File(
         fileName = fileExt.fileName,
         type = fileExt.type,
         language = fileExt.language,
@@ -28,13 +27,28 @@ internal object GithubGistTransformers {
         size = fileExt.size
     )
 
-
     private fun user(userExt: UserExt): User = User(
         login = userExt.login,
         id = userExt.id,
         avatarUrl = userExt.avatarUrl,
         url = userExt.url,
         gistsUrl = userExt.gistsUrl
+    )
+
+    fun commits(commitExtList: List<CommitExt>): List<Commit> = commitExtList.map(::commit)
+
+    private fun commit(commitExt: CommitExt): Commit = Commit(
+        user = user(commitExt.user),
+        version = commitExt.version,
+        committedAt = commitExt.committedAt,
+        changeStatus = changeStatus(commitExt.changeStatus),
+        url = commitExt.url
+    )
+
+    private fun changeStatus(changeStatusExt: ChangeStatusExt): ChangeStatus = ChangeStatus(
+        total = changeStatusExt.total,
+        additions = changeStatusExt.additions,
+        deletions = changeStatusExt.deletions
     )
 
 }

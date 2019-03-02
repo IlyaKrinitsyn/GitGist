@@ -8,6 +8,12 @@
 
         <item name="listDividerHeight">@dimen/dimen.1dp</item>
 
+        <!-- Padding -->
+        <item name="paddingXSmall">@dimen/dimen.8dp</item>
+        <item name="paddingSmall">@dimen/dimen.12dp</item>
+        <item name="paddingMedium">@dimen/dimen.16dp</item>
+        <item name="paddingLarge">@dimen/dimen.24dp</item>
+
         <!-- Margin -->
         <item name="marginXSmall">@dimen/dimen.8dp</item>
         <item name="marginSmall">@dimen/dimen.12dp</item>

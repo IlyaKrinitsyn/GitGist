@@ -1,6 +1,7 @@
 package com.krinitsyn.git_gist.impl
 
 import com.krinitsyn.git_gist.GithubGistExternalDataSource
+import com.krinitsyn.git_gist.data.Commit
 import com.krinitsyn.git_gist.data.Gist
 import com.krinitsyn.git_gist.data.external.GithubGistTransformers
 import com.krinitsyn.utils.RxThrowable
@@ -19,6 +20,16 @@ internal class GithubGistExternalDataSourceImpl(
     override fun getPublicGists(): Single<List<Gist>> = githubGistApi.getPublicGists()
         .observeOn(schedulers.computation)
         .map(GithubGistTransformers::gists)
+        .doOnError(RxThrowable.printStackTrace(logger, propagate = false))
+
+    override fun getGist(gistId: String): Single<Gist> = githubGistApi.getGist(gistId)
+        .observeOn(schedulers.computation)
+        .map(GithubGistTransformers::gist)
+        .doOnError(RxThrowable.printStackTrace(logger, propagate = false))
+
+    override fun getGistCommits(gistId: String): Single<List<Commit>> = githubGistApi.getGistCommits(gistId)
+        .observeOn(schedulers.computation)
+        .map(GithubGistTransformers::commits)
         .doOnError(RxThrowable.printStackTrace(logger, propagate = false))
 
 }

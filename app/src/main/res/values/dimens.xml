@@ -7,5 +7,6 @@
     <dimen name="dimen.16dp">16dp</dimen>
     <dimen name="dimen.24dp">24dp</dimen>
     <dimen name="dimen.40dp">40dp</dimen>
+    <dimen name="dimen.60dp">60dp</dimen>
 
 </resources>

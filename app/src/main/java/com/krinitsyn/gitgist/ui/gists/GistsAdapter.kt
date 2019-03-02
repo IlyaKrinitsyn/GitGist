@@ -65,25 +65,25 @@ internal class GistViewHolder(
     }
 
     fun setAvatar(viewConsumer: (ImageView) -> Unit) {
-        viewConsumer(itemView.avatarView)
+        viewConsumer(itemView.listItemGistAvatarView)
     }
 
     var gistName: CharSequence?
-        get() = itemView.gistNameView.text
+        get() = itemView.listItemGistNameView.text
         set(value) {
-            itemView.gistNameView.text = value
+            itemView.listItemGistNameView.text = value
         }
 
     var gistDescription: CharSequence?
-        get() = itemView.gistDescriptionView.text
+        get() = itemView.listItemGistDescriptionView.text
         set(value) {
-            itemView.gistDescriptionView.text = value
+            itemView.listItemGistDescriptionView.text = value
         }
 
     var isGistDescriptionVisible: Boolean
-        get() = itemView.gistDescriptionView.isVisible
+        get() = itemView.listItemGistDescriptionView.isVisible
         set(value) {
-            itemView.gistDescriptionView.isVisible = value
+            itemView.listItemGistDescriptionView.isVisible = value
         }
 
     private fun onClick(view: View) {

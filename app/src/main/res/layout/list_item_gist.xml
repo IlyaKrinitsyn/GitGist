@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/avatarView"
+        android:id="@+id/listItemGistAvatarView"
         android:layout_width="@dimen/dimen.40dp"
         android:layout_height="@dimen/dimen.40dp"
         android:layout_marginStart="?marginMedium"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/gistNameView"
+        android:id="@+id/listItemGistNameView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="?marginMedium"
@@ -30,12 +30,12 @@
         android:maxLines="2"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/avatarView"
+        app:layout_constraintStart_toEndOf="@id/listItemGistAvatarView"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="UserName/Wow.java"/>
 
     <TextView
-        android:id="@+id/gistDescriptionView"
+        android:id="@+id/listItemGistDescriptionView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="?marginMedium"
@@ -47,8 +47,8 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/avatarView"
-        app:layout_constraintTop_toBottomOf="@id/gistNameView"
+        app:layout_constraintStart_toEndOf="@id/listItemGistAvatarView"
+        app:layout_constraintTop_toBottomOf="@id/listItemGistNameView"
         tools:text="Some description"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

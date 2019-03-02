@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/listItemGistFileNameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/listItemGistFileNameBackground"
+        android:padding="?paddingSmall"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        tools:text="UserName/HelloWorld.java"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="?paddingSmall"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:visibility="visible"
+        tools:text="@tools:sample/lorem[120]"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/listItemGistFileHideView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:paddingTop="?paddingXSmall"
+        android:paddingBottom="?paddingXSmall"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Tab"
+        tools:text="Hide"/>
+
+</LinearLayout>
