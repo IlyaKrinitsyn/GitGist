@@ -28,6 +28,7 @@ internal class PicassoImageLoader constructor(
         picasso.load(avatarUrl)
             .placeholder(placeholderRes)
             .centerCrop()
+            .fit()
             .into(imageView)
     }
 
