@@ -9,7 +9,7 @@
     android:paddingBottom="?paddingXSmall">
 
     <TextView
-        android:id="@+id/listItemGistCommitIdView"
+        android:id="@+id/listItemCommitIdView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -24,7 +24,7 @@
         tools:text="e463b00765e508966149bd03811641180714255c"/>
 
     <TextView
-        android:id="@+id/listItemGistCommitUserView"
+        android:id="@+id/listItemCommitUserView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -33,13 +33,15 @@
         android:paddingStart="?paddingSmall"
         android:paddingEnd="?paddingSmall"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listItemGistCommitIdView"
-        tools:text="by https://reddit.com/r/mAndroidDev/"/>
+        app:layout_constraintTop_toBottomOf="@id/listItemCommitIdView"
+        tools:text="by https://reddit.com/r/mAndroidDev/"
+        tools:visibility="visible"/>
 
     <TextView
-        android:id="@+id/listItemGistCommitAdditionsView"
+        android:id="@+id/listItemCommitAdditionsView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="?marginXSmall"
@@ -50,13 +52,13 @@
         android:paddingStart="?paddingSmall"
         android:paddingEnd="?paddingSmall"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        app:layout_constraintEnd_toStartOf="@id/listItemGistCommitDeletionsView"
+        app:layout_constraintEnd_toStartOf="@id/listItemCommitDeletionsView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listItemGistCommitUserView"
+        app:layout_constraintTop_toBottomOf="@id/listItemCommitUserView"
         tools:text="+155515"/>
 
     <TextView
-        android:id="@+id/listItemGistCommitDeletionsView"
+        android:id="@+id/listItemCommitDeletionsView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="?marginXSmall"
@@ -68,8 +70,8 @@
         android:paddingEnd="?paddingSmall"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/listItemGistCommitAdditionsView"
-        app:layout_constraintTop_toBottomOf="@id/listItemGistCommitUserView"
+        app:layout_constraintStart_toEndOf="@id/listItemCommitAdditionsView"
+        app:layout_constraintTop_toBottomOf="@id/listItemCommitUserView"
         tools:text="-94949"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

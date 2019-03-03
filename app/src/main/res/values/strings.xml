@@ -4,29 +4,31 @@
 
     <!-- Common -->
     <string name="unknown.error.message">Wow, something went wrong</string>
+    <string name="io.exception.github.error.message">Wow, something went wrong\nGithub broke again</string>
     <string name="connection.error.message">Wow, something went wrong\nCheck your connection</string>
+    <string name="simple.placeholder" formatted="true">%1$s</string>
 
     <!-- Gists fragment -->
-    <string name="fragment.gists.top.title">Look at these guys</string>
-
-    <!-- List item gist -->
-    <string name="list.item.gist.name.format" formatted="true">%1$s/%2$s</string>
+    <string name="fragment.gists.users.title">Look at these guys, they are on horse</string>
 
     <!-- Gist fragment -->
     <string name="fragment.gist.gist.name.format" formatted="true">%1$s/%2$s</string>
     <string name="fragment.gist.reload" formatted="true">Reload</string>
 
-    <!-- List item gist header -->
-    <string name="list.item.gist.header.files">Files:</string>
-    <string name="list.item.gist.header.commits">Commits:</string>
+    <!-- List item gist -->
+    <string name="list.item.gist.name.format" formatted="true">%1$s/%2$s</string>
 
-    <!-- List item gist file -->
-    <string name="list.item.gist.file.show.content">Show</string>
-    <string name="list.item.gist.file.hide.content">Hide</string>
+    <!-- List item header -->
+    <string name="list.item.header.files">Files:</string>
+    <string name="list.item.header.commits">Commits:</string>
 
-    <!-- List item gist commit -->
-    <string name="list.item.gist.commit.user.format" formatted="true">by %1$s</string>
-    <string name="list.item.gist.commit.additions.format" formatted="true">Additions: %1$s</string>
-    <string name="list.item.gist.commit.deletions.format" formatted="true">Deletions: %1$s</string>
+    <!-- List item file -->
+    <string name="list.item.file.show.content">Show</string>
+    <string name="list.item.file.hide.content">Hide</string>
+
+    <!-- List item commit -->
+    <string name="list.item.commit.user.format" formatted="true">by %1$s</string>
+    <string name="list.item.commit.additions.format" formatted="true">Additions: %1$s</string>
+    <string name="list.item.commit.deletions.format" formatted="true">Deletions: %1$s</string>
 
 </resources>

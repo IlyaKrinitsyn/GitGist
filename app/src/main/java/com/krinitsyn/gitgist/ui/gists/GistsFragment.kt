@@ -16,6 +16,7 @@ import com.krinitsyn.gitgist.presentation.gists.GistsPresenter
 import com.krinitsyn.gitgist.presentation.gists.GistsView
 import com.krinitsyn.gitgist.presentation.gists.GistsViewState
 import com.krinitsyn.gitgist.ui.AbstractFragment
+import com.krinitsyn.utils.optional.ifPresentOrElse
 import com.krinitsyn.utils.resource.Resource
 import kotlinx.android.synthetic.main.fragment_gists.*
 
@@ -44,8 +45,11 @@ internal class GistsFragment : AbstractFragment(), GistsView {
         return GistsPresenter(repository, schedulers, logger)
     }
 
+    private lateinit var usersAdapter: GistsUserAdapter
+    private lateinit var usersItemDecoration: GistsUserItemDecoration
+
     private lateinit var gistsAdapter: GistsAdapter
-    private lateinit var gistsItemDecoration: GistsItemDecorataion
+    private lateinit var gistsItemDecoration: GistsItemDecoration
 
     private var callbacks: Callbacks? = null
 
@@ -63,16 +67,26 @@ internal class GistsFragment : AbstractFragment(), GistsView {
         fragmentGistsSwipeRefreshLayout.setOnRefreshListener { presenter.refreshGists() }
 
         val imageLoader = GithubGistImageLoaderFactory.withFragment(this)
+        val context = requireContext()
+
+        usersAdapter = GistsUserAdapter(imageLoader)
+//        usersAdapter.onClickListener = ::onUserClick
+        usersItemDecoration = GistsUserItemDecoration()
+        with(fragmentGistsUsersRecyclerView) {
+            adapter = usersAdapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            addItemDecoration(usersItemDecoration)
+            isNestedScrollingEnabled = false
+        }
+
         gistsAdapter = GistsAdapter(imageLoader)
         gistsAdapter.onClickListener = ::onGistClick
-
-        gistsItemDecoration = GistsItemDecorataion()
-
-        val context = requireContext()
+        gistsItemDecoration = GistsItemDecoration()
         with(fragmentGistsRecyclerView) {
             adapter = gistsAdapter
             layoutManager = LinearLayoutManager(context)
             addItemDecoration(gistsItemDecoration)
+            isNestedScrollingEnabled = false
         }
     }
 
@@ -80,10 +94,24 @@ internal class GistsFragment : AbstractFragment(), GistsView {
         callbacks?.showGist(gist.gistId)
     }
 
-    override fun onViewStateChanged(viewState: GistsViewState) = when (val resource = viewState.gists) {
-        is Resource.Loading -> showLoading()
-        is Resource.Data -> showGists(resource.data)
-        is Resource.Error -> showError(resource.throwable)
+    override fun onViewStateChanged(viewState: GistsViewState) {
+        viewState.users.ifPresentOrElse(::showTopUsers, ::hideTopUsers)
+
+        when (val resource = viewState.gists) {
+            is Resource.Loading -> showLoading()
+            is Resource.Data -> showGists(resource.data)
+            is Resource.Error -> showError(resource.throwable)
+        }
+    }
+
+    private fun showTopUsers(users: List<GistsViewState.User>) {
+        usersAdapter.items = users
+        fragmentGistsUsersLayout.isVisible = true
+    }
+
+    private fun hideTopUsers() {
+        usersAdapter.items = emptyList()
+        fragmentGistsUsersLayout.isVisible = false
     }
 
     private fun showLoading() {
@@ -120,6 +148,7 @@ internal class GistsFragment : AbstractFragment(), GistsView {
         super.onDestroyView()
         fragmentGistsSwipeRefreshLayout.setOnRefreshListener(null)
         fragmentGistsRecyclerView.adapter = null
+        fragmentGistsUsersRecyclerView.adapter = null
     }
 
     override fun onDetach() {

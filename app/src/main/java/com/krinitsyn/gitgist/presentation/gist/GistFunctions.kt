@@ -22,13 +22,13 @@ internal object GistFunctions {
 
         val files = gist.files.map(::createFile)
         if (files.isNotEmpty()) {
-            items += Item.Header(R.string.list_item_gist_header_files)
+            items += Item.Header(R.string.list_item_header_files)
             items += files
         }
 
         val commits = rawCommits.map(::createCommit)
         if (commits.isNotEmpty()) {
-            items += Item.Header(R.string.list_item_gist_header_commits)
+            items += Item.Header(R.string.list_item_header_commits)
             items += commits
         }
 
@@ -43,7 +43,7 @@ internal object GistFunctions {
     )
 
     private fun createCommit(commit: Commit): Item.Commit = Item.Commit(
-        userName = commit.user.login,
+        userName = commit.user?.login,
         version = commit.version,
         changeStatus = commit.changeStatus
     )

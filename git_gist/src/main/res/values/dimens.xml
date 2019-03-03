@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="icon.40dp">40dp</dimen>
-    <dimen name="icon.60dp">60dp</dimen>
+    <dimen name="icon.40dp">@dimen/dimen.40dp</dimen>
+    <dimen name="icon.50dp">@dimen/dimen.50dp</dimen>
+    <dimen name="icon.60dp">@dimen/dimen.60dp</dimen>
+
+    <dimen name="dimen.40dp">40dp</dimen>
+    <dimen name="dimen.50dp">50dp</dimen>
+    <dimen name="dimen.60dp">60dp</dimen>
 
 </resources>

@@ -11,7 +11,7 @@ import com.krinitsyn.gitgist.R
 import com.krinitsyn.gitgist.ui.util.drawableAttr
 import org.jetbrains.anko.dimenAttr
 
-internal class GistsItemDecorataion : RecyclerView.ItemDecoration() {
+internal class GistsItemDecoration : RecyclerView.ItemDecoration() {
 
     private lateinit var attrs: Attrs
 
@@ -40,8 +40,7 @@ internal class GistsItemDecorataion : RecyclerView.ItemDecoration() {
             val listDivider = attrs.listDivider
             val listDividerHeight = attrs.listDividerHeight ?: 0
             if (viewHolder != null && listDivider != null && listDividerHeight > 0) {
-                listDivider.setBounds(child.left, child.top - listDividerHeight, child.right,
-                    child.top)
+                listDivider.setBounds(child.left, child.top - listDividerHeight, child.right, child.top)
                 listDivider.draw(canvas)
             }
         }

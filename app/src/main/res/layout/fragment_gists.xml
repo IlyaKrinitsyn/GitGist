@@ -21,7 +21,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/fragmentGistsTopLayout"
+                    android:id="@+id/fragmentGistsUsersLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -31,12 +31,15 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="?marginSmall"
                         android:gravity="start"
-                        android:padding="?paddingXXSmall"
-                        android:text="@string/fragment.gists.top.title"/>
+                        android:paddingStart="?paddingXSmall"
+                        android:paddingEnd="?paddingXSmall"
+                        android:text="@string/fragment.gists.users.title"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"/>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/fragmentGistsTopRecyclerView"
+                        android:id="@+id/fragmentGistsUsersRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 

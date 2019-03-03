@@ -4,6 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.krinitsyn.gitgist.presentation.gist.GistViewState.Item
+import com.krinitsyn.gitgist.ui.viewholder.CommitViewHolder
+import com.krinitsyn.gitgist.ui.viewholder.FileViewHolder
+import com.krinitsyn.gitgist.ui.viewholder.HeaderViewHolder
 import kotlin.properties.Delegates
 
 internal class GistAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -21,18 +24,18 @@ internal class GistAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            Item.Type.Header.value -> GistHeaderViewHolder.inflate(inflater, parent)
-            Item.Type.File.value -> GistFileViewHolder.inflate(inflater, parent)
-            Item.Type.Commit.value -> GistCommitViewHolder.inflate(inflater, parent)
+            Item.Type.Header.value -> HeaderViewHolder.inflate(inflater, parent)
+            Item.Type.File.value -> FileViewHolder.inflate(inflater, parent)
+            Item.Type.Commit.value -> CommitViewHolder.inflate(inflater, parent)
             else -> throw IllegalStateException("Unknown view type = $viewType")
         }
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         when (val item = items[position]) {
-            is Item.Header -> GistHeaderBinder.bind(viewHolder as GistHeaderViewHolder, item)
-            is Item.File -> GistFileBinder.bind(viewHolder as GistFileViewHolder, item)
-            is Item.Commit -> GistCommitBinder.bind(viewHolder as GistCommitViewHolder, item)
+            is Item.Header -> GistHeaderBinder.bind(viewHolder as HeaderViewHolder, item)
+            is Item.File -> GistFileBinder.bind(viewHolder as FileViewHolder, item)
+            is Item.Commit -> GistCommitBinder.bind(viewHolder as CommitViewHolder, item)
         }
     }
 

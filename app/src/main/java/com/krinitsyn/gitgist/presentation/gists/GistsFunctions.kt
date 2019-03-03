@@ -5,18 +5,21 @@ import com.krinitsyn.git_gist.data.User
 
 internal object GistsFunctions {
 
+    private const val UsersLimit = 10
+
     fun createUsers(rawGists: List<Gist>): List<GistsViewState.User> = rawGists
         .groupBy { gist -> gist.owner }
         .mapValues { entry -> entry.value.size }
         .toList()
         .sortedByDescending { (_, numberOfGists) -> numberOfGists }
-        .map { (user, _) -> user }
-        .map(::createUser)
+        .take(UsersLimit)
+        .map { (user, gists) -> createUser(user, gists) }
 
-    private fun createUser(rawUser: User): GistsViewState.User = GistsViewState.User(
+    private fun createUser(rawUser: User, gists: Int): GistsViewState.User = GistsViewState.User(
         id = rawUser.id,
         login = rawUser.login,
-        avatarUrl = rawUser.avatarUrl
+        avatarUrl = rawUser.avatarUrl,
+        gists = gists
     )
 
     fun createGists(rawGists: List<Gist>): List<GistsViewState.Gist> = rawGists

@@ -4,7 +4,7 @@ import com.krinitsyn.utils.optional.None
 import com.krinitsyn.utils.optional.Optional
 import com.krinitsyn.utils.resource.Resource
 
-data class GistsViewState(
+internal data class GistsViewState(
     val users: Optional<List<User>> = None,
     val gists: Resource<List<Gist>> = Resource.Loading()
 ) {
@@ -12,7 +12,8 @@ data class GistsViewState(
     data class User(
         val id: Long,
         val login: String,
-        val avatarUrl: String
+        val avatarUrl: String,
+        val gists: Int
     )
 
     data class Gist(

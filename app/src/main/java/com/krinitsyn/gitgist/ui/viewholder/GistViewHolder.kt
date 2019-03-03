@@ -1,4 +1,4 @@
-package com.krinitsyn.gitgist.ui.gists
+package com.krinitsyn.gitgist.ui.viewholder
 
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +26,7 @@ internal class GistViewHolder private constructor(
         itemView.setOnClickListener(::onClick)
     }
 
-    fun setOnClickListenet(listener: ((RecyclerView.ViewHolder, View) -> Unit)?) {
+    fun setOnClickListener(listener: ((RecyclerView.ViewHolder, View) -> Unit)?) {
         onClickListener = listener
         itemView.isClickable = listener != null
     }

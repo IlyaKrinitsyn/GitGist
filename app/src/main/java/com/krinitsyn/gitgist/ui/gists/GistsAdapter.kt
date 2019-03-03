@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.krinitsyn.git_gist.GithubGistImageLoader
 import com.krinitsyn.gitgist.R
 import com.krinitsyn.gitgist.presentation.gists.GistsViewState
+import com.krinitsyn.gitgist.ui.viewholder.GistViewHolder
 import kotlin.properties.Delegates
 
 internal class GistsAdapter(
@@ -32,8 +33,8 @@ internal class GistsAdapter(
             gist.gistDescription?.let { description ->
                 gistDescription = description
                 isGistDescriptionVisible = true
-                setOnClickListenet { viewHolder, _ -> onGistClick(viewHolder as GistViewHolder) }
             }
+            setOnClickListener { viewHolder, _ -> onGistClick(viewHolder as GistViewHolder) }
         }
     }
 

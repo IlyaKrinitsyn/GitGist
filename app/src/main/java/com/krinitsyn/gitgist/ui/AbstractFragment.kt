@@ -11,6 +11,7 @@ import io.reactivex.annotations.BackpressureKind
 import io.reactivex.annotations.BackpressureSupport
 import io.reactivex.annotations.CheckReturnValue
 import io.reactivex.annotations.SchedulerSupport
+import java.io.IOException
 
 internal abstract class AbstractFragment : MvpAppCompatFragment() {
 
@@ -97,6 +98,7 @@ internal abstract class AbstractFragment : MvpAppCompatFragment() {
         val context = requireContext()
         return when (this) {
             is ConnectionException -> context.getString(R.string.connection_error_message)
+            is IOException -> context.getString(R.string.io_exception_github_error_message)
             else -> context.getString(R.string.unknown_error_message)
         }
     }

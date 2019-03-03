@@ -40,7 +40,7 @@ internal data class GistViewState(
         ) : Item()
 
         data class Commit(
-            val userName: String,
+            val userName: String?,
             val version: String,
             val changeStatus: ChangeStatus,
             override val type: Type = Type.Commit
