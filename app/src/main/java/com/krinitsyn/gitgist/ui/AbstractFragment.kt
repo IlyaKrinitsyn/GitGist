@@ -23,30 +23,30 @@ internal abstract class AbstractFragment : MvpAppCompatFragment() {
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
     fun <T> Single<T>.asAutoDispose() =
-            `as`(AutoDispose.autoDisposable(lifecycleScopeProvider))!!
+        `as`(AutoDispose.autoDisposable(lifecycleScopeProvider))!!
 
     @CheckReturnValue
     @SchedulerSupport(SchedulerSupport.NONE)
     fun <T> Observable<T>.asAutoDispose() =
-            `as`(AutoDispose.autoDisposable(lifecycleScopeProvider))!!
+        `as`(AutoDispose.autoDisposable(lifecycleScopeProvider))!!
 
     @CheckReturnValue
     @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
     @SchedulerSupport(SchedulerSupport.NONE)
     fun <T> Completable.asAutoDispose() =
-            `as`(AutoDispose.autoDisposable<T>(lifecycleScopeProvider))!!
+        `as`(AutoDispose.autoDisposable<T>(lifecycleScopeProvider))!!
 
     @CheckReturnValue
     @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
     @SchedulerSupport(SchedulerSupport.NONE)
     fun <T> Maybe<T>.asAutoDispose() =
-            `as`(AutoDispose.autoDisposable(lifecycleScopeProvider))!!
+        `as`(AutoDispose.autoDisposable(lifecycleScopeProvider))!!
 
     @CheckReturnValue
     @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
     @SchedulerSupport(SchedulerSupport.NONE)
     fun <T> Flowable<T>.asAutoDispose() =
-            `as`(AutoDispose.autoDisposable(lifecycleScopeProvider))!!
+        `as`(AutoDispose.autoDisposable(lifecycleScopeProvider))!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

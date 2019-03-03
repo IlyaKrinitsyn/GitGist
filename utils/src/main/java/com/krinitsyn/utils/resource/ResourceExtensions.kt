@@ -1,5 +1,8 @@
 package com.krinitsyn.utils.resource
 
+import com.krinitsyn.utils.optional.None
+import com.krinitsyn.utils.optional.Optional
+import com.krinitsyn.utils.optional.Some
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -28,6 +31,16 @@ fun <T : Any> Flowable<T>.asResource(): Flowable<Resource<T>> =
     map { data -> Resource.Data(data = data) as Resource<T> }
         .onErrorReturn { throwable -> Resource.Error(throwable = throwable) }
         .startWith(Resource.Loading())
+
+@CheckReturnValue
+@BackpressureSupport(BackpressureKind.FULL)
+@SchedulerSupport(SchedulerSupport.NONE)
+fun <T : Any> Flowable<Resource<T>>.resourceAsOptional(): Flowable<Optional<T>> = this.switchMap { resource ->
+    when (resource) {
+        is Resource.Loading, is Resource.Error -> Flowable.just(None)
+        is Resource.Data -> Flowable.just(Some(resource.data))
+    }
+}
 
 @CheckReturnValue
 @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)

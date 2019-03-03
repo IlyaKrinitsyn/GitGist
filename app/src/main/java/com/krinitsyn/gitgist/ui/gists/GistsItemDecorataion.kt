@@ -41,7 +41,7 @@ internal class GistsItemDecorataion : RecyclerView.ItemDecoration() {
             val listDividerHeight = attrs.listDividerHeight ?: 0
             if (viewHolder != null && listDivider != null && listDividerHeight > 0) {
                 listDivider.setBounds(child.left, child.top - listDividerHeight, child.right,
-                        child.top)
+                    child.top)
                 listDivider.draw(canvas)
             }
         }
@@ -49,14 +49,14 @@ internal class GistsItemDecorataion : RecyclerView.ItemDecoration() {
 
     private fun ensureAttrs(context: Context) {
         attrs = Attrs(
-                listDivider = context.drawableAttr(android.R.attr.listDivider),
-                listDividerHeight = context.dimenAttr(R.attr.listDividerHeight)
+            listDivider = context.drawableAttr(android.R.attr.listDivider),
+            listDividerHeight = context.dimenAttr(R.attr.listDividerHeight)
         )
     }
 
     private data class Attrs(
-            val listDivider: Drawable? = null,
-            @Px val listDividerHeight: Int? = null
+        val listDivider: Drawable? = null,
+        @Px val listDividerHeight: Int? = null
     )
 
 }

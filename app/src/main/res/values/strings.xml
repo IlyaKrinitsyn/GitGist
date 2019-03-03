@@ -6,6 +6,9 @@
     <string name="unknown.error.message">Wow, something went wrong</string>
     <string name="connection.error.message">Wow, something went wrong\nCheck your connection</string>
 
+    <!-- Gists fragment -->
+    <string name="fragment.gists.top.title">Look at these guys</string>
+
     <!-- List item gist -->
     <string name="list.item.gist.name.format" formatted="true">%1$s/%2$s</string>
 
