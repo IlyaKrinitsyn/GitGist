@@ -3,13 +3,13 @@ package com.krinitsyn.gitgist.ui.gists
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.krinitsyn.git_gist.ImageLoader
+import com.krinitsyn.git_gist.GithubGistImageLoader
 import com.krinitsyn.gitgist.R
 import com.krinitsyn.gitgist.presentation.gists.GistsViewState
 import kotlin.properties.Delegates
 
 internal class GistsAdapter(
-    private val imageLoader: ImageLoader
+    private val githubGistImageLoader: GithubGistImageLoader
 ) : RecyclerView.Adapter<GistViewHolder>() {
 
     var onClickListener: ((GistsViewState.Gist) -> Unit)? = null
@@ -27,7 +27,7 @@ internal class GistsAdapter(
         val context = viewHolder.itemView.context
         val gist = items[position]
         with(viewHolder) {
-            setAvatar { view -> imageLoader.loadUserAvatar40dp(view, gist.avatarUrl) }
+            setAvatar { view -> githubGistImageLoader.loadUserAvatar40dp(view, gist.avatarUrl) }
             gistName = context.getString(R.string.list_item_gist_name_format, gist.login, gist.gistName)
             gist.gistDescription?.let { description ->
                 gistDescription = description

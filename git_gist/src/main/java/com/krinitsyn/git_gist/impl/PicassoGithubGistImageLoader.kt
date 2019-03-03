@@ -3,14 +3,14 @@ package com.krinitsyn.git_gist.impl
 import android.content.Context
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
-import com.krinitsyn.git_gist.ImageLoader
+import com.krinitsyn.git_gist.GithubGistImageLoader
 import com.krinitsyn.git_gist.R
 import com.squareup.picasso.Picasso
 
-internal class PicassoImageLoader constructor(
+internal class PicassoGithubGistImageLoader constructor(
     private val context: Context,
     private val picasso: Picasso = Picasso.get()
-) : ImageLoader {
+) : GithubGistImageLoader {
 
     override fun loadUserAvatar40dp(imageView: ImageView, avatarUrl: String) {
         loadUserAvatar(imageView, avatarUrl, R.drawable.ic_rectangle_placeholder_40dp)

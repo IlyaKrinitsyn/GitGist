@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.krinitsyn.core.Dependencies
 import com.krinitsyn.core.DependenciesFactory
-import com.krinitsyn.git_gist.GithubGistProvider
 
 internal class GitGistApplication : Application(), DependenciesProvider {
 
@@ -14,7 +13,7 @@ internal class GitGistApplication : Application(), DependenciesProvider {
 
     override fun onCreate() {
         super.onCreate()
-        GithubGistProvider.setUpPicassoImageLoader(this)
+        DependenciesFactory.setUpPicassoImageLoader(this)
     }
 
     override fun dependencies(): Dependencies = dependencies

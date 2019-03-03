@@ -2,7 +2,7 @@ package com.krinitsyn.git_gist
 
 import android.widget.ImageView
 
-interface ImageLoader {
+interface GithubGistImageLoader {
 
     fun loadUserAvatar40dp(imageView: ImageView, avatarUrl: String)
 
