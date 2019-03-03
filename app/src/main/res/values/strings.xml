@@ -3,13 +3,15 @@
     <string name="app_name">GitGist</string>
 
     <!-- Common -->
-    <string name="error.message">Wow, something went wrong</string>
+    <string name="unknown.error.message">Wow, something went wrong</string>
+    <string name="connection.error.message">Wow, something went wrong\nCheck your connection</string>
 
-    <!-- Gists fragment -->
-    <string name="fragment.gists.gist.name.format" formatted="true">%1$s/%2$s</string>
+    <!-- List item gist -->
+    <string name="list.item.gist.name.format" formatted="true">%1$s/%2$s</string>
 
     <!-- Gist fragment -->
     <string name="fragment.gist.gist.name.format" formatted="true">%1$s/%2$s</string>
+    <string name="fragment.gist.reload" formatted="true">Reload</string>
 
     <!-- List item gist header -->
     <string name="list.item.gist.header.files">Files:</string>

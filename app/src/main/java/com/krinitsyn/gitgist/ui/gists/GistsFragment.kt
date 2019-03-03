@@ -92,6 +92,7 @@ internal class GistsFragment : AbstractFragment(), GistsView {
 
         gistsAdapter.items = emptyList()
 
+        fragmentGistsErrorView.text = null
         fragmentGistsErrorView.isVisible = false
     }
 
@@ -101,16 +102,17 @@ internal class GistsFragment : AbstractFragment(), GistsView {
 
         gistsAdapter.items = gists
 
+        fragmentGistsErrorView.text = null
         fragmentGistsErrorView.isVisible = false
     }
 
-    // TODO add exception factory and show actual error
     private fun showError(throwable: Throwable) {
         fragmentGistsSwipeRefreshLayout.isRefreshing = false
         fragmentGistsSwipeRefreshLayout.isEnabled = true
 
         gistsAdapter.items = emptyList()
 
+        fragmentGistsErrorView.text = throwable.toErrorMessage()
         fragmentGistsErrorView.isVisible = true
     }
 

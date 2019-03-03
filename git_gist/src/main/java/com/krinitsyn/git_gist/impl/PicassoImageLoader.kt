@@ -13,11 +13,11 @@ internal class PicassoImageLoader constructor(
 ) : ImageLoader {
 
     override fun loadUserAvatar40dp(imageView: ImageView, avatarUrl: String) {
-        loadUserAvatar(imageView, avatarUrl , R.drawable.ic_rectangle_placeholder_40dp)
+        loadUserAvatar(imageView, avatarUrl, R.drawable.ic_rectangle_placeholder_40dp)
     }
 
     override fun loadUserAvatar60dp(imageView: ImageView, avatarUrl: String) {
-        loadUserAvatar(imageView, avatarUrl , R.drawable.ic_rectangle_placeholder_60dp)
+        loadUserAvatar(imageView, avatarUrl, R.drawable.ic_rectangle_placeholder_60dp)
     }
 
     private fun loadUserAvatar(
@@ -27,6 +27,7 @@ internal class PicassoImageLoader constructor(
     ) {
         picasso.load(avatarUrl)
             .placeholder(placeholderRes)
+            .error(placeholderRes)
             .centerCrop()
             .fit()
             .into(imageView)

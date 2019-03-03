@@ -52,12 +52,19 @@ internal class GistFragment : AbstractFragment(), GistView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        fragmentGistSwipeRefreshLayout.setOnRefreshListener {
+            presenter.reloadGist()
+            presenter.reloadCommits()
+        }
+
         gistAdapter = GistAdapter()
-        with(fragmentGistContentRecyclerView) {
+        with(fragmentGistFileAndCommitsRecyclerView) {
             adapter = gistAdapter
             layoutManager = LinearLayoutManager(requireContext())
             isNestedScrollingEnabled = false
         }
+
+        fragmentGistFileAndCommitsReloadView.setOnClickListener { presenter.reloadCommits() }
     }
 
     override fun onViewStateChanged(viewState: GistViewState) {
@@ -74,14 +81,20 @@ internal class GistFragment : AbstractFragment(), GistView {
     }
 
     private fun showInfoLoading() {
+        fragmentGistSwipeRefreshLayout.isRefreshing = false
+        fragmentGistSwipeRefreshLayout.isEnabled = false
         fragmentGistProgressBar.isVisible = true
 
         fragmentGistContentLayout.isVisible = false
+        fragmentGistDescriptionView.isVisible = false
 
+        fragmentGistErrorView.text = null
         fragmentGistErrorView.isVisible = false
     }
 
     private fun showInfo(info: GistViewState.Info) {
+        fragmentGistSwipeRefreshLayout.isRefreshing = false
+        fragmentGistSwipeRefreshLayout.isEnabled = false
         fragmentGistProgressBar.isVisible = false
 
         fragmentGistContentLayout.isVisible = true
@@ -98,33 +111,51 @@ internal class GistFragment : AbstractFragment(), GistView {
             fragmentGistDescriptionView.isVisible = false
         }
 
+        fragmentGistErrorView.text = null
         fragmentGistErrorView.isVisible = false
     }
 
     private fun showInfoError(throwable: Throwable) {
+        fragmentGistSwipeRefreshLayout.isRefreshing = false
+        fragmentGistSwipeRefreshLayout.isEnabled = true
         fragmentGistProgressBar.isVisible = false
 
         fragmentGistContentLayout.isVisible = false
         fragmentGistDescriptionView.isVisible = false
 
+        fragmentGistErrorView.text = throwable.toErrorMessage()
         fragmentGistErrorView.isVisible = true
     }
 
     private fun showItemsLoading() {
         gistAdapter.items = emptyList()
+
+        fragmentGistFileAndCommitsErrorView.text = null
+        fragmentGistFileAndCommitsErrorView.isVisible = false
+        fragmentGistFileAndCommitsReloadView.isVisible = false
     }
 
     private fun showItems(items: List<GistViewState.Item>) {
         gistAdapter.items = items
+
+        fragmentGistFileAndCommitsErrorView.text = null
+        fragmentGistFileAndCommitsErrorView.isVisible = false
+        fragmentGistFileAndCommitsReloadView.isVisible = false
     }
 
     private fun showItemsError(throwable: Throwable) {
         gistAdapter.items = emptyList()
+
+        fragmentGistFileAndCommitsErrorView.text = throwable.toErrorMessage()
+        fragmentGistFileAndCommitsErrorView.isVisible = true
+        fragmentGistFileAndCommitsReloadView.isVisible = true
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        fragmentGistContentRecyclerView.adapter = null
+        fragmentGistSwipeRefreshLayout.setOnRefreshListener(null)
+        fragmentGistFileAndCommitsRecyclerView.adapter = null
+        fragmentGistFileAndCommitsReloadView.setOnClickListener(null)
     }
 
 }

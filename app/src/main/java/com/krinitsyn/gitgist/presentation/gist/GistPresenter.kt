@@ -10,8 +10,10 @@ import com.krinitsyn.utils.resource.biResource
 import com.krinitsyn.utils.resource.mapResource
 import com.krinitsyn.utils.schedulers.Schedulers
 import com.krinitsyn.utils.toConnectableFlowable
+import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.rxkotlin.Flowables
+import io.reactivex.subjects.BehaviorSubject
 
 @InjectViewState
 internal class GistPresenter(
@@ -21,15 +23,18 @@ internal class GistPresenter(
     private val gistId: String
 ) : AbstractPresenter<GistView>() {
 
+    private val gistReloadSubject = BehaviorSubject.createDefault(Unit)
+    private val commitsReloadSubject = BehaviorSubject.createDefault(Unit)
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        val rawGistFlowalbe = repository.githubGistDataService
-            .getGist(gistId)
+        val rawGistFlowalbe = gistReloadSubject.toFlowable(BackpressureStrategy.DROP)
+            .switchMap { repository.githubGistDataService.getGist(gistId) }
             .toConnectableFlowable()
 
-        val rawCommitsFlowable = repository.githubGistDataService
-            .getGistCommits(gistId)
+        val rawCommitsFlowable = commitsReloadSubject.toFlowable(BackpressureStrategy.DROP)
+            .switchMap { repository.githubGistDataService.getGistCommits(gistId) }
 
         val gistInfoPartialFlowable = rawGistFlowalbe
             .observeOn(schedulers.computation)
@@ -46,5 +51,9 @@ internal class GistPresenter(
             .asAutoDispose()
             .subscribe(viewState::onViewStateChanged, RxThrowable.printStackTrace(logger, propagate = true))
     }
+
+    fun reloadGist() = gistReloadSubject.onNext(Unit)
+
+    fun reloadCommits() = commitsReloadSubject.onNext(Unit)
 
 }

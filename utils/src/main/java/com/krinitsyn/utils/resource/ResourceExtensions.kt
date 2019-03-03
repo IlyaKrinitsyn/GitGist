@@ -12,9 +12,9 @@ import io.reactivex.annotations.SchedulerSupport
 @BackpressureSupport(BackpressureKind.FULL)
 @SchedulerSupport(SchedulerSupport.NONE)
 fun <T : Any> Single<T>.asResource(): Flowable<Resource<T>> = map { data -> Resource.Data(data = data) as Resource<T> }
-        .onErrorReturn { throwable -> Resource.Error(throwable = throwable) }
-        .toFlowable()
-        .startWith(Resource.Loading())
+    .onErrorReturn { throwable -> Resource.Error(throwable = throwable) }
+    .toFlowable()
+    .startWith(Resource.Loading())
 
 @CheckReturnValue
 @BackpressureSupport(BackpressureKind.FULL)
@@ -25,25 +25,25 @@ fun <T : Any> Maybe<T>.asResource(): Flowable<Resource<T>> = toSingle().asResour
 @BackpressureSupport(BackpressureKind.FULL)
 @SchedulerSupport(SchedulerSupport.NONE)
 fun <T : Any> Flowable<T>.asResource(): Flowable<Resource<T>> =
-        map { data -> Resource.Data(data = data) as Resource<T> }
-                .onErrorReturn { throwable -> Resource.Error(throwable = throwable) }
-                .startWith(Resource.Loading())
+    map { data -> Resource.Data(data = data) as Resource<T> }
+        .onErrorReturn { throwable -> Resource.Error(throwable = throwable) }
+        .startWith(Resource.Loading())
 
 @CheckReturnValue
 @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
 @SchedulerSupport(SchedulerSupport.NONE)
 fun <T : Any, R : Any> Flowable<Resource<T>>.mapResource(
-        mapper: (T) -> R
+    mapper: (T) -> R
 ): Flowable<Resource<R>> = switchMapSingle { resource ->
     Single.just(resource)
-            .map { data -> data.map(mapper) }
+        .map { data -> data.map(mapper) }
 }.distinctResourceUntilChanged()
 
 @CheckReturnValue
 @BackpressureSupport(BackpressureKind.UNBOUNDED_IN)
 @SchedulerSupport(SchedulerSupport.NONE)
 fun <T : Any, R : Any> Flowable<Resource<T>>.flatMapResource(
-        mapper: (T) -> Flowable<Resource<R>>
+    mapper: (T) -> Flowable<Resource<R>>
 ): Flowable<Resource<R>> = switchMap { resource ->
     when (resource) {
         is Resource.Loading -> Flowable.just(Resource.Loading(resource.timestamp))
@@ -60,7 +60,7 @@ fun <T : Any, R : Any> Flowable<Resource<T>>.flatMapResource(
 @BackpressureSupport(BackpressureKind.FULL)
 @SchedulerSupport(SchedulerSupport.NONE)
 fun <T : Any> Flowable<Resource<T>>.unwrapResource(
-        propagateError: Boolean = false
+    propagateError: Boolean = false
 ): Flowable<T> = this.switchMap { resource ->
     when (resource) {
         is Resource.Loading -> Flowable.empty<T>()
@@ -76,7 +76,7 @@ fun <T : Any> Flowable<Resource<T>>.unwrapResource(
 @BackpressureSupport(BackpressureKind.FULL)
 @SchedulerSupport(SchedulerSupport.NONE)
 inline fun <T : Any> Flowable<Resource<T>>.unwrapResourceError(
-        crossinline predicate: (Throwable) -> Boolean = { true }
+    crossinline predicate: (Throwable) -> Boolean = { true }
 ): Flowable<Throwable> = switchMap { resource ->
     when (resource) {
         is Resource.Loading -> Flowable.empty<Throwable>()
@@ -92,4 +92,4 @@ inline fun <T : Any> Flowable<Resource<T>>.unwrapResourceError(
 @BackpressureSupport(BackpressureKind.FULL)
 @SchedulerSupport(SchedulerSupport.NONE)
 fun <T : Any> Flowable<Resource<T>>.distinctResourceUntilChanged(): Flowable<Resource<T>> =
-        distinctUntilChanged { lhs, rhs -> lhs.javaClass == rhs.javaClass && lhs.timestamp == rhs.timestamp }
+    distinctUntilChanged { lhs, rhs -> lhs.javaClass == rhs.javaClass && lhs.timestamp == rhs.timestamp }

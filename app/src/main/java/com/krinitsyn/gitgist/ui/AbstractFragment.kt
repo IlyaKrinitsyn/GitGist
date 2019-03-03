@@ -3,6 +3,8 @@ package com.krinitsyn.gitgist.ui
 import android.os.Bundle
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatFragment
+import com.krinitsyn.gitgist.R
+import com.krinitsyn.utils.network.ConnectionException
 import com.uber.autodispose.AutoDispose
 import io.reactivex.*
 import io.reactivex.annotations.BackpressureKind
@@ -89,6 +91,14 @@ internal abstract class AbstractFragment : MvpAppCompatFragment() {
     override fun onDetach() {
         lifecycleScopeProvider.onDetach()
         super.onDetach()
+    }
+
+    fun Throwable.toErrorMessage(): CharSequence {
+        val context = requireContext()
+        return when (this) {
+            is ConnectionException -> context.getString(R.string.connection_error_message)
+            else -> context.getString(R.string.unknown_error_message)
+        }
     }
 
 }

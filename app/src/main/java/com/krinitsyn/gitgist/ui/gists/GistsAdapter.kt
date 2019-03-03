@@ -28,7 +28,7 @@ internal class GistsAdapter(
         val gist = items[position]
         with(viewHolder) {
             setAvatar { view -> imageLoader.loadUserAvatar40dp(view, gist.avatarUrl) }
-            gistName = context.getString(R.string.fragment_gists_gist_name_format, gist.login, gist.gistName)
+            gistName = context.getString(R.string.list_item_gist_name_format, gist.login, gist.gistName)
             gist.gistDescription?.let { description ->
                 gistDescription = description
                 isGistDescriptionVisible = true
