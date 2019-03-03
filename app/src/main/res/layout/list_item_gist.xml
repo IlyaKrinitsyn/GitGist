@@ -5,17 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="?paddingMedium"
+    android:paddingBottom="?paddingMedium">
 
     <ImageView
         android:id="@+id/listItemGistAvatarView"
         android:layout_width="@dimen/dimen.40dp"
         android:layout_height="@dimen/dimen.40dp"
         android:layout_marginStart="?marginMedium"
-        android:layout_marginTop="?marginMedium"
         android:layout_marginBottom="?marginMedium"
         android:contentDescription="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -24,7 +24,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="?marginMedium"
-        android:layout_marginTop="?marginMedium"
         android:layout_marginEnd="?marginMedium"
         android:ellipsize="end"
         android:maxLines="2"
@@ -40,7 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="?marginMedium"
         android:layout_marginEnd="?marginMedium"
-        android:layout_marginBottom="?marginMedium"
         android:ellipsize="end"
         android:maxLines="3"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"

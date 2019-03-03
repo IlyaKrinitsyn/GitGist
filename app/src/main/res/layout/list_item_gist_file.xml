@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingTop="?paddingXSmall"
+    android:paddingBottom="?paddingXSmall"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -10,17 +12,20 @@
         android:id="@+id/listItemGistFileNameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/listItemGistFileNameBackground"
-        android:padding="?paddingSmall"
+        android:drawableStart="@drawable/ic_file_blue_16dp"
+        android:drawablePadding="?paddingXSmall"
+        android:paddingStart="?paddingSmall"
+        android:paddingEnd="?paddingSmall"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
         tools:text="UserName/HelloWorld.java"/>
 
     <TextView
+        android:id="@+id/listItemGistFileContentView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="?paddingSmall"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:text="@tools:sample/lorem[120]"
         tools:visibility="visible"/>
 
@@ -30,9 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:paddingTop="?paddingXSmall"
-        android:paddingBottom="?paddingXSmall"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Tab"
+        android:paddingTop="?paddingXXSmall"
+        android:text="@string/list.item.gist.file.show.content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        android:textSize="12sp"
         tools:text="Hide"/>
 
 </LinearLayout>

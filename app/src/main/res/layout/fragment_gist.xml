@@ -1,65 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ProgressBar
+        android:id="@+id/fragmentGistProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/fragmentGistContentLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
 
-        <ImageView
-            android:id="@+id/fragmentGistAvatarView"
-            android:layout_width="@dimen/dimen.40dp"
-            android:layout_height="@dimen/dimen.40dp"
-            android:layout_marginStart="?marginMedium"
-            android:layout_marginTop="?marginMedium"
-            android:layout_marginBottom="?marginMedium"
-            android:contentDescription="@null"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@android:color/holo_red_dark"/>
-
-        <TextView
-            android:id="@+id/fragmentGistNameView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="?marginMedium"
-            android:layout_marginTop="?marginMedium"
-            android:layout_marginEnd="?marginMedium"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/fragmentGistAvatarView"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="UserName/HelloWorld.java"/>
-
-        <TextView
-            android:id="@+id/fragmentGistDescriptionView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="?marginMedium"
-            android:layout_marginTop="?marginMedium"
-            android:layout_marginEnd="?marginMedium"
-            app:layout_constraintBottom_toTopOf="@id/fragmentGistFilesRecyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragmentGistAvatarView"
-            tools:text="@tools:sample/lorem[40]"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fragmentGistFilesRecyclerView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragmentGistDescriptionView"/>
+            android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:id="@+id/fragmentGistAvatarAndNameView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-</androidx.core.widget.NestedScrollView>
+                <ImageView
+                    android:id="@+id/fragmentGistAvatarView"
+                    android:layout_width="@dimen/dimen.60dp"
+                    android:layout_height="@dimen/dimen.60dp"
+                    android:layout_marginStart="?marginMedium"
+                    android:layout_marginTop="?marginMedium"
+                    android:layout_marginBottom="?marginMedium"
+                    android:contentDescription="@null"
+                    android:src="@color/iconPlaceholderColor"/>
+
+                <TextView
+                    android:id="@+id/fragmentGistNameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="?marginMedium"
+                    android:layout_marginTop="?marginMedium"
+                    android:layout_marginEnd="?marginMedium"
+                    android:layout_marginBottom="?marginMedium"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    tools:text="UserName/HelloWorld.java"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fragmentGistDescriptionView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="?marginMedium"
+                android:layout_marginEnd="?marginMedium"
+                android:layout_marginBottom="?marginMedium"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/fragmentGistContentRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentGistAvatarAndNameView"
+                tools:text="@tools:sample/lorem[40]"
+                tools:visibility="visible"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragmentGistContentRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentGistDescriptionView"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/fragmentGistErrorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/error.message"/>
+
+</FrameLayout>

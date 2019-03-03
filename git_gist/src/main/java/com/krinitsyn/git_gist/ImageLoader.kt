@@ -4,6 +4,8 @@ import android.widget.ImageView
 
 interface ImageLoader {
 
-    fun loadUserAvatar(imageView: ImageView, avatarUrl: String)
+    fun loadUserAvatar40dp(imageView: ImageView, avatarUrl: String)
+
+    fun loadUserAvatar60dp(imageView: ImageView, avatarUrl: String)
 
 }

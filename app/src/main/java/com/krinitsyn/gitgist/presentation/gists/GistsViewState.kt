@@ -8,7 +8,6 @@ data class GistsViewState(
 
     data class Gist(
             val login: String,
-            val userId: Long,
             val avatarUrl: String,
             val gistName: String,
             val gistDescription: String?,

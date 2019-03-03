@@ -9,7 +9,6 @@ internal object GistsFunctions {
 
     private fun createGist(rawGist: Gist): GistsViewState.Gist = GistsViewState.Gist(
         login = rawGist.owner.login,
-        userId = rawGist.owner.id,
         avatarUrl = rawGist.owner.avatarUrl,
         gistName = rawGist.files.keys.first(),
         gistDescription = rawGist.description,

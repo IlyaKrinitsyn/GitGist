@@ -9,6 +9,7 @@
         <item name="listDividerHeight">@dimen/dimen.1dp</item>
 
         <!-- Padding -->
+        <item name="paddingXXSmall">@dimen/dimen.4dp</item>
         <item name="paddingXSmall">@dimen/dimen.8dp</item>
         <item name="paddingSmall">@dimen/dimen.12dp</item>
         <item name="paddingMedium">@dimen/dimen.16dp</item>

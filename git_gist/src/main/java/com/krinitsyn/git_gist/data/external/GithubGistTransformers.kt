@@ -24,7 +24,8 @@ internal object GithubGistTransformers {
         type = fileExt.type,
         language = fileExt.language,
         rawUrl = fileExt.rawUrl,
-        size = fileExt.size
+        size = fileExt.size,
+        content = fileExt.content
     )
 
     private fun user(userExt: UserExt): User = User(

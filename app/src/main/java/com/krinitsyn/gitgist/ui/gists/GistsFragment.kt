@@ -21,6 +21,12 @@ import kotlinx.android.synthetic.main.fragment_gists.*
 
 internal class GistsFragment : AbstractFragment(), GistsView {
 
+    interface Callbacks {
+
+        fun showGist(gistId: String)
+
+    }
+
     companion object {
 
         const val Tag = "GistsFragment"
@@ -41,12 +47,15 @@ internal class GistsFragment : AbstractFragment(), GistsView {
     private lateinit var gistsAdapter: GistsAdapter
     private lateinit var gistsItemDecoration: GistsItemDecorataion
 
+    private var callbacks: Callbacks? = null
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        callbacks = context as Callbacks
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            inflater.inflate(R.layout.fragment_gists, container, false)
+        inflater.inflate(R.layout.fragment_gists, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,6 +64,7 @@ internal class GistsFragment : AbstractFragment(), GistsView {
 
         val imageLoader = GithubGistImageLoaderFactory.withFragment(this)
         gistsAdapter = GistsAdapter(imageLoader)
+        gistsAdapter.onClickListener = ::onGistClick
 
         gistsItemDecoration = GistsItemDecorataion()
 
@@ -64,6 +74,10 @@ internal class GistsFragment : AbstractFragment(), GistsView {
             layoutManager = LinearLayoutManager(context)
             addItemDecoration(gistsItemDecoration)
         }
+    }
+
+    private fun onGistClick(gist: GistsViewState.Gist) {
+        callbacks?.showGist(gist.gistId)
     }
 
     override fun onViewStateChanged(viewState: GistsViewState) = when (val resource = viewState.gists) {
@@ -90,6 +104,7 @@ internal class GistsFragment : AbstractFragment(), GistsView {
         fragmentGistsErrorView.isVisible = false
     }
 
+    // TODO add exception factory and show actual error
     private fun showError(throwable: Throwable) {
         fragmentGistsSwipeRefreshLayout.isRefreshing = false
         fragmentGistsSwipeRefreshLayout.isEnabled = true
@@ -103,6 +118,11 @@ internal class GistsFragment : AbstractFragment(), GistsView {
         super.onDestroyView()
         fragmentGistsSwipeRefreshLayout.setOnRefreshListener(null)
         fragmentGistsRecyclerView.adapter = null
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callbacks = null
     }
 
 }

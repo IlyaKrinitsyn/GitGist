@@ -2,6 +2,7 @@
 <resources>
 
     <dimen name="dimen.1dp">1dp</dimen>
+    <dimen name="dimen.4dp">4dp</dimen>
     <dimen name="dimen.8dp">8dp</dimen>
     <dimen name="dimen.12dp">12dp</dimen>
     <dimen name="dimen.16dp">16dp</dimen>

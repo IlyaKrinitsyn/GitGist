@@ -1,20 +1,18 @@
 package com.krinitsyn.gitgist.ui.gists
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.krinitsyn.git_gist.ImageLoader
 import com.krinitsyn.gitgist.R
 import com.krinitsyn.gitgist.presentation.gists.GistsViewState
-import kotlinx.android.synthetic.main.list_item_gist.view.*
 import kotlin.properties.Delegates
 
 internal class GistsAdapter(
     private val imageLoader: ImageLoader
 ) : RecyclerView.Adapter<GistViewHolder>() {
+
+    var onClickListener: ((GistsViewState.Gist) -> Unit)? = null
 
     var items: List<GistsViewState.Gist> by Delegates.observable(emptyList()) { _, _, _ ->
         notifyDataSetChanged()
@@ -29,65 +27,24 @@ internal class GistsAdapter(
         val context = viewHolder.itemView.context
         val gist = items[position]
         with(viewHolder) {
-            setAvatar { view -> imageLoader.loadUserAvatar(view, gist.avatarUrl) }
+            setAvatar { view -> imageLoader.loadUserAvatar40dp(view, gist.avatarUrl) }
             gistName = context.getString(R.string.fragment_gists_gist_name_format, gist.login, gist.gistName)
             gist.gistDescription?.let { description ->
                 gistDescription = description
                 isGistDescriptionVisible = true
+                setOnClickListenet { viewHolder, _ -> onGistClick(viewHolder as GistViewHolder) }
             }
         }
     }
 
     override fun getItemCount(): Int = items.size
 
-}
-
-internal class GistViewHolder(
-    itemView: View
-) : RecyclerView.ViewHolder(itemView) {
-
-    companion object {
-
-        internal fun inflate(layoutInflater: LayoutInflater, parent: ViewGroup) =
-            GistViewHolder(layoutInflater.inflate(R.layout.list_item_gist, parent, false))
-
-    }
-
-    private var onClickListener: ((RecyclerView.ViewHolder, View) -> Unit)? = null
-
-    init {
-        itemView.setOnClickListener(::onClick)
-    }
-
-    fun setOnClickListenet(listener: ((RecyclerView.ViewHolder, View) -> Unit)?) {
-        onClickListener = listener
-        itemView.isClickable = listener != null
-    }
-
-    fun setAvatar(viewConsumer: (ImageView) -> Unit) {
-        viewConsumer(itemView.listItemGistAvatarView)
-    }
-
-    var gistName: CharSequence?
-        get() = itemView.listItemGistNameView.text
-        set(value) {
-            itemView.listItemGistNameView.text = value
+    private fun onGistClick(viewHolder: GistViewHolder) {
+        val position = viewHolder.adapterPosition
+        if (position in 0..(itemCount - 1)) {
+            val gist = items[position]
+            onClickListener?.invoke(gist)
         }
-
-    var gistDescription: CharSequence?
-        get() = itemView.listItemGistDescriptionView.text
-        set(value) {
-            itemView.listItemGistDescriptionView.text = value
-        }
-
-    var isGistDescriptionVisible: Boolean
-        get() = itemView.listItemGistDescriptionView.isVisible
-        set(value) {
-            itemView.listItemGistDescriptionView.isVisible = value
-        }
-
-    private fun onClick(view: View) {
-        onClickListener?.invoke(this, view)
     }
 
 }

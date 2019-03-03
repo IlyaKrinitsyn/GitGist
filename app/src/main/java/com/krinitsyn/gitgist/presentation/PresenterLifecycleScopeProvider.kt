@@ -32,7 +32,7 @@ internal class PresenterLifecycleScopeProvider : LifecycleScopeProvider<Presente
         private val CorrespondingEvents = Function<PresenterEvent, PresenterEvent> {
             when (it) {
                 PresenterEvent.Create -> PresenterEvent.Destroy
-                else -> throw LifecycleEndedException("Cannot bind to View model lifecycle after destroy.")
+                else -> throw LifecycleEndedException("Cannot bind to presenter lifecycle after destroy.")
             }
         }
 

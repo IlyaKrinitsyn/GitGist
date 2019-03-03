@@ -8,4 +8,20 @@
     <!-- Gists fragment -->
     <string name="fragment.gists.gist.name.format" formatted="true">%1$s/%2$s</string>
 
+    <!-- Gist fragment -->
+    <string name="fragment.gist.gist.name.format" formatted="true">%1$s/%2$s</string>
+
+    <!-- List item gist header -->
+    <string name="list.item.gist.header.files">Files:</string>
+    <string name="list.item.gist.header.commits">Commits:</string>
+
+    <!-- List item gist file -->
+    <string name="list.item.gist.file.show.content">Show</string>
+    <string name="list.item.gist.file.hide.content">Hide</string>
+
+    <!-- List item gist commit -->
+    <string name="list.item.gist.commit.user.format" formatted="true">by %1$s</string>
+    <string name="list.item.gist.commit.additions.format" formatted="true">Additions: %1$s</string>
+    <string name="list.item.gist.commit.deletions.format" formatted="true">Deletions: %1$s</string>
+
 </resources>

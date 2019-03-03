@@ -5,6 +5,7 @@
     <attr name="listDividerHeight" format="dimension|reference"/>
 
     <!-- Padding -->
+    <attr name="paddingXXSmall" format="dimension|reference"/>
     <attr name="paddingXSmall" format="dimension|reference"/>
     <attr name="paddingSmall" format="dimension|reference"/>
     <attr name="paddingMedium" format="dimension|reference"/>

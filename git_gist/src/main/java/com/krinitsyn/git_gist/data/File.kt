@@ -5,5 +5,6 @@ data class File(
     val type: String,
     val language: String?,
     val rawUrl: String,
+    val content: String?,
     val size: Long
 )

@@ -64,8 +64,7 @@ internal class FragmentLifecycleScopeProvider : LifecycleScopeProvider<FragmentL
                 FragmentEvent.Stop -> FragmentEvent.DestroyView
                 FragmentEvent.DestroyView -> FragmentEvent.Destroy
                 FragmentEvent.Destroy -> FragmentEvent.Detach
-                else -> throw LifecycleEndedException(
-                        "Cannot bind to Fragment lifecycle after detach.")
+                else -> throw LifecycleEndedException("Cannot bind to Fragment lifecycle after detach.")
             }
         }
 

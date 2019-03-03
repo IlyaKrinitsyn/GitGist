@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="icon.40dp">40dp</dimen>
+    <dimen name="icon.60dp">60dp</dimen>
 
 </resources>

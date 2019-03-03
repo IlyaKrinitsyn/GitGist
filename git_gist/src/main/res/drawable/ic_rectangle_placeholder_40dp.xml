@@ -5,6 +5,6 @@
     <size android:width="@dimen/icon.40dp"
           android:height="@dimen/icon.40dp"/>
 
-    <solid android:color="@color/circle.icon.placeholder.color"/>
+    <solid android:color="@color/icon.placeholder.color"/>
 
 </shape>
